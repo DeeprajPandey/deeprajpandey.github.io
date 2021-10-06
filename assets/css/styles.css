@@ -1,0 +1,495 @@
+/* Custom CSS */
+:root, html[data-theme="light"] {
+  --clr-green: #03B5AA;
+  --clr-salmon: #CD8987;
+  
+  --clr-bg: #FFEFD5;
+  --clr-txt: #003153;
+  --clr-header: #CA2E55;
+  --clr-anchor: var(--clr-green);
+  --clr-sectionhead: var(--clr-red);
+  /* --clr-resume-time: rgba(34,36,39,1); */
+  /* --clr-resume-time: #51585D; */
+  --clr-resume-time: rgba(81,88,93,0.85);
+ 
+  --font-custom: "Reforma1969";
+  --font-sans-serif: "Avenir-Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: Georgia, serif;
+  --font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+:root.dark-mode, html[data-theme="dark"] {
+  --clr-bg: #003153;
+  --clr-txt: #FFEFD5;
+  --clr-header: #FD673B;
+  --clr-anchor: #17ffee;
+  --clr-sectionhead: var(--clr-red);
+  --clr-resume-time: #BCB9B1;
+}
+
+body {
+  font-family: var(--font-custom);
+  font-weight: 300;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--clr-txt, #000);
+  background-color: var(--clr-bg, #fff);
+  transition: background 0.2s linear;
+}
+
+/*=====================================*/
+
+/* Typography */
+/* Serif Italic - Display */
+/* Webfont: Reforma1918 Blanca */@font-face {
+  font-family: 'Reforma1918';
+  src: url('Reforma1918/Reforma1918-Blanca.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('Reforma1918/Reforma1918-Blanca.woff') format('woff'), /* Modern Browsers */
+       url('Reforma1918/Reforma1918-Blanca.eot') format('woff'),
+       url('Reforma1918/Reforma1918-Blanca.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+/* Webfont: Reforma1918 GrisItalica */@font-face {
+  font-family: 'Reforma1918';
+  src: url('/assets/fonts/Reforma1918/Reforma1918-GrisItalica.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('/assets/fonts/Reforma1918/Reforma1918-GrisItalica.woff') format('woff'), /* Modern Browsers */
+       url('/assets/fonts/Reforma1918/Reforma1918-GrisItalica.eot') format('woff'),
+       url('/assets/fonts/Reforma1918/Reforma1918-GrisItalica.ttf') format('truetype');   /* Safari, Android, iOS */
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Webfont: Reforma1918 Gris */@font-face {
+  font-family: 'Reforma1918';
+  src: url('Reforma1918/Reforma1918-Gris.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('Reforma1918/Reforma1918-Gris.woff') format('woff'), /* Modern Browsers */
+       url('Reforma1918/Reforma1918-Gris.eot') format('woff'),
+       url('Reforma1918/Reforma1918-Gris.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+}
+
+/* Semi-Serif - Body */
+/* Webfont: Reforma1969 Blanca */@font-face {
+  font-family: 'Reforma1969';
+  src: url('/assets/fonts/Reforma1969/Reforma1969-Blanca.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('/assets/fonts/Reforma1969/Reforma1969-Blanca.woff') format('woff'), /* Modern Browsers */
+       url('/assets/fonts/Reforma1969/Reforma1969-Blanca.eot') format('woff'),
+       url('/assets/fonts/Reforma1969/Reforma1969-Blanca.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 300;
+}
+
+/* Webfont: Reforma1969 Blanca Italica */@font-face {
+  font-family: 'Reforma1969';
+  src: url('/assets/fonts/Reforma1969/Reforma1969-BlancaItalica.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('/assets/fonts/Reforma1969/Reforma1969-BlancaItalica.woff') format('woff'), /* Modern Browsers */
+       url('/assets/fonts/Reforma1969/Reforma1969-BlancaItalica.eot') format('woff'),
+       url('/assets/fonts/Reforma1969/Reforma1969-BlancaItalica.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Resume Fonts */
+/* org */
+/* Webfont: Reforma1969 Gris */@font-face {
+  font-family: 'Reforma1969';
+  src: url('Reforma1969/Reforma1969-Gris.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('Reforma1969/Reforma1969-Gris.woff') format('woff'), /* Modern Browsers */
+       url('Reforma1969/Reforma1969-Gris.eot') format('woff'),
+       url('Reforma1969/Reforma1969-Gris.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 500;
+}
+/* Webfont: Reforma1969 Negra */@font-face {
+  font-family: 'Reforma1969';
+  src: url('Reforma1969/Reforma1969-Negra.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('Reforma1969/Reforma1969-Negra.woff') format('woff'), /* Modern Browsers */
+       url('Reforma1969/Reforma1969-Negra.eot') format('woff'),
+       url('Reforma1969/Reforma1969-Negra.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* role and time */
+/* Webfont: Reforma2018 Blanca */@font-face {
+  font-family: 'Reforma2018';
+  src: url('Reforma2018/Reforma2018-Blanca.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('Reforma2018/Reforma2018-Blanca.woff') format('woff'), /* Modern Browsers */
+       url('Reforma2018/Reforma2018-Blanca.eot') format('woff'),
+       url('Reforma2018/Reforma2018-Blanca.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 300;
+}
+
+/* location */
+/* Webfont: Reforma2018 BlancaItalica */@font-face {
+  font-family: 'Reforma2018';
+  src: url('Reforma2018/Reforma2018-BlancaItalica.woff2') format('woff2'), /* /* Super Modern Browsers */
+       url('Reforma2018/Reforma2018-BlancaItalica.woff') format('woff'), /* Modern Browsers */
+       url('Reforma2018/Reforma2018-BlancaItalica.eot') format('woff'),
+       url('Reforma2018/Reforma2018-BlancaItalica.ttf') format('truetype');     /* Safari, Android, iOS */
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* === Extra fonts for testing === */
+/* Webfont: Space Grotesk Light */@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/assets/fonts/SpaceGrotesk-Light.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 300;
+}
+
+/* Webfont: Space Grotesk Regular */@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/assets/fonts/SpaceGrotesk-Regular.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Webfont: Space Grotesk Medium */@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/assets/fonts/SpaceGrotesk-Medium.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Webfont: Space Grotesk SemiBold */@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/assets/fonts/SpaceGrotesk-SemiBold.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Webfont: Space Grotesk Bold */@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/assets/fonts/SpaceGrotesk-Bold.ttf') format('truetype');	 /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 700;
+}
+
+/*=====================================*/
+
+/* Dark Mode Toggler */
+.checkbox {
+  /* margin-left: auto;
+  order: -1; */
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.checkbox input[type="checkbox"] {
+  opacity: 0;
+}
+
+.label {
+  background-color: var(--clr-txt);
+  position: fixed;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 50px;
+  padding: 5px;
+  height: 26px;
+  width: 50px;
+  margin: 40px;
+  transform: scale(1.2);
+}
+
+#moon{
+  color: var(--clr-bg, #fff);
+}
+
+#sun {
+  color: var(--clr-bg, #fff);
+}
+
+.label .ball {
+  background-color: var(--clr-white, #fff);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 22px;
+  width: 22px;
+  transform: translateX(0px);
+  transition: transform 0.2s linear;
+}
+
+.checkbox input[type="checkbox"]:checked + .label .ball {
+  transform: translateX(24px);
+}
+
+/* Add focus to label to make it accessible */
+.checkbox input[type="checkbox"]:focus + .label {
+  outline: rgb(59, 153, 252) auto 5px;
+}
+
+/*=====================================*/
+/* Tag Defaults */
+
+h1 {
+  font-size: 4em;
+  line-height: 1.2em;
+  padding: 20px 0;
+  font-family: "Reforma1918";
+  font-weight: 500;
+  font-style: italic;
+}
+
+h2 {
+  font-size: 42px;
+  line-height: 1.2em;
+  padding: 20px 0;
+  font-family: "Reforma1969";
+  font-weight: 300;
+  font-style: normal;
+}
+
+h3 {
+  font-weight: 300;
+  margin: 30px 0 20px 0;
+}
+
+h4 {
+  margin: 30px 0 20px 0;
+  font-family: "Avenir-Heavy";
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.75em;
+}
+
+a {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  color: var(--clr-anchor, blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  filter: brightness(80%);
+  /* color: #134db6; */
+}
+
+ul {
+  list-style-type: none;
+  margin: 20px 0 64px 0;
+  padding: 0;
+}
+
+section {
+  margin: auto 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+section .full {
+  max-width: 1300px;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+section .wrapper {
+  margin: auto;
+  max-width: 760px;
+  box-sizing: border-box;
+}
+
+.column {
+  box-sizing: border-box;
+}
+
+.column .full {
+  width: 100%;
+}
+
+.column .left {
+  vertical-align: top;
+  width: 49%;
+  display: inline-block;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+
+.column .right {
+  vertical-align: top;
+  width: 50%;
+  display: inline-block;
+  padding-left: 30px;
+  box-sizing: border-box;
+}
+
+.page-title h3 {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  font-size: 1em;
+  margin-right: 10px;
+  font-weight: 800;
+}
+
+.page-title h3.role {
+  font-weight: 300;
+  margin: 0;
+}
+
+/*=====================================*/
+/* Homepage Specific Style */
+
+#homepage .section-header {
+  color: var(--clr-header);
+  font-size: 0.75em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: "avenir-heavy";
+}
+
+#homepage h3 {
+  font-size: 1.8em;
+  font-family: "Reforma1918";
+  font-weight: 500;
+  font-style: normal;
+}
+
+#homepage h4 {
+  font-size: 1.4em;
+  font-family: "Reforma1918";
+  font-weight: 500;
+  font-style: normal;
+}
+
+#homepage .title {
+  margin: 80px 0 32px 0;
+}
+
+#homepage .title h1,#homepage .title h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 2.2em;
+}
+
+#homepage .title h2 {
+  font-size: 1.5em;
+}
+
+#homepage .resume li {
+  margin: 0 0 20px 0;
+
+  --font-resume-role_loc_time: "Reforma2018"; /* Blanca */
+  --font-resume-org: "Reforma1969"; /* Gris */
+}
+
+#homepage .resume .role {
+  font-size: 0.9em;
+  font-family: var(--font-resume-org);
+  margin: 4px 0;
+  font-weight: 700;
+}
+
+#homepage .resume .place {
+  font-size: 0.9em;
+}
+
+#homepage .resume .place .org {
+  font-family: var(--font-resume-role_loc_time);
+  /* font-family: "Avenir-Heavy"; */
+  font-style: normal;
+}
+
+#homepage .resume .place .location {
+  font-family: var(--font-resume-role_loc_time);
+  font-style: italic;
+}
+
+#homepage .resume .time {
+  font-size: 0.9em;
+  font-family: var(--font-resume-role_loc_time);
+  color: var(--clr-resume-time);
+}
+
+#homepage .resume .skill {
+  font-size: 0.9em;
+  font-family: "Avenir-Heavy"
+}
+
+
+/*=====================================*/
+/* Socials */
+
+.socials {
+  margin-top: -20px;
+  margin-bottom: -40px;
+}
+
+.socials ul {
+  /* compensate for padding */
+  margin-left: -10px;
+}
+
+.socials li {
+  display: inline-block;
+}
+
+.socials li:hover {
+  opacity: 1;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.socials ion-icon {
+  height: 30px;
+  width: 30px;
+  padding: 10px;
+}
+
+.socials a:hover {
+  opacity: 0.5
+}
+
+/*=====================================*/
+/* Media queries */
+
+@media screen and (max-width: 768px) {
+  .socials {
+    margin-top: 35px;
+  }
+
+  .sunset {
+      background-size: cover;
+      height: 150px;
+      margin: -50px 0 20px 0
+  }
+
+  #homepage .title {
+      margin: 32px 0 32px 0
+  }
+
+  #homepage footer {
+      margin: 0
+  }
+
+  .column .left {
+      width: 100%;
+      padding-right: 0
+  }
+
+  .column .right {
+      width: 100%;
+      padding-left: 0
+  }
+}

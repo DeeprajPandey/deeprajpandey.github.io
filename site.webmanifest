@@ -1,0 +1,9 @@
+{
+  "name": "DeeprajPandey",
+  "short_name": "DeeprajPandey",
+  "icons": [
+    { "src": "/logo_192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/logo_512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "display": "standalone"
+}
