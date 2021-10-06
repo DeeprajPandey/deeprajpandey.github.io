@@ -11,7 +11,9 @@
   /* --clr-resume-time: rgba(34,36,39,1); */
   /* --clr-resume-time: #51585D; */
   --clr-resume-time: rgba(81,88,93,0.85);
- 
+  --clr-toggle: #E6FDDD;
+  /* --clr-toggle: #DFE7FD; */
+  
   --font-custom: "Reforma1969";
   --font-sans-serif: "Avenir-Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
   --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -26,6 +28,8 @@
   --clr-anchor: #17ffee;
   --clr-sectionhead: var(--clr-red);
   --clr-resume-time: #BCB9B1;
+  /* --clr-toggle: #007ea7; */
+  --clr-toggle: #305200;
 }
 
 body {
@@ -217,7 +221,7 @@ body {
 }
 
 .label .ball {
-  background-color: var(--clr-white, #fff);
+  background-color: var(--clr-toggle, #fff);
   border-radius: 50%;
   position: absolute;
   top: 2px;
