@@ -442,6 +442,19 @@ section .wrapper {
   font-family: "AvenirHeavy"
 }
 
+#homepage .left a.section-link {
+  -webkit-transition:all 0.2s;
+  transition:all 0.2s;
+  color: var(--clr-txt, black);
+  text-decoration: none;
+}
+
+#homepage .left a.section-link:hover {
+  filter: brightness(80%);
+  color: var(--clr-anchor, blue);
+}
+
+
 
 /*=====================================*/
 /* Socials */
