@@ -18,7 +18,7 @@ This plan addresses these fundamental issues through systematic remediation, est
 
 To effectively address the identified issues, it's essential to understand your complete system architecture and data flows.
 
-![System Architecture](/diagrams/system-architecture.svg)
+![System Architecture](https://deeprajpandey.com/lumiere-email-backend/diagrams/system-architecture.svg)
 
 Your application has a well-structured system design with clear separation between authentication, email processing, and data synchronisation layers. The webhook processing pipeline identified in my analysis represents a critical component within this broader architecture.
 
@@ -67,7 +67,7 @@ The webhook processing flow reveals why your Airtable sync fails intermittently.
 
 <DiagramSection title="Diagram: Current Email Processing Workflow" id="email-processing">
 
-![Email Processing Webhooks](/diagrams/email-processing.svg)
+![Email Processing Webhooks](https://deeprajpandey.com/lumiere-email-backend/diagrams/email-processing.svg)
 
 This diagram illustrates the complete email processing pipeline from Nylas webhook receipt through Airtable synchronisation. The critical failure point occurs at the error handling step, where failed operations return success codes.
 
