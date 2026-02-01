@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+
+  <title>Cellular Automata Workshop - Deepraj Pandey</title>
+
+  <script type="module">
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
+  <link rel="subresource stylesheet" href="/assets/css/resets.css" as="style">
+  <link rel="subresource stylesheet" href="/assets/css/styles.css" as="style">
+  <link rel="preload" href="/assets/fonts/Reforma1918-GrisItalica.woff2" as="font" type="font/woff2"
+    crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/Reforma1969-Blanca.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/assets/css/print.css" media="print">
+
+  <meta name="theme-color" content="#003153" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#FFEFD5" media="(prefers-color-scheme: light)">
+</head>
+
+<body id="homepage">
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Theme Toggle -->
+  <div class="checkbox">
+    <input type="checkbox" id="checkbox_t">
+    <label for="checkbox_t" class="label">
+      <ion-icon name="sunny" id="sun"></ion-icon>
+      <ion-icon name="moon" id="moon"></ion-icon>
+      <div class="ball"></div>
+    </label>
+  </div>
+
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="section section--project-hero">
+      <div class="section__container">
+        <nav class="about__nav">
+          <a href="/index.html" class="about__back">&larr; Back to home</a>
+        </nav>
+
+        <header class="project-hero__header">
+          <h1 class="hero__name">Pixels That Think</h1>
+          <p class="project-hero__meta">160 students &bull; 4 weeks &bull; Summer 2025</p>
+        </header>
+      </div>
+
+      <figure class="project-hero__figure">
+        <img src="/assets/img/workshops/workshop-site.png" alt="Workshop site homepage showing Pixels That Think title with colourful cellular automata pattern" class="project-hero__img">
+        <figcaption class="project-hero__caption">
+          The workshop site with an interactive 1D cellular automata demonstration.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- Context -->
+    <section class="section section--short section--project-content">
+      <div class="section__container">
+        <article class="project-content">
+
+          <div class="project-content__lede">
+            <p>We ran a 4-hour workshop on cellular automata for 160 high school students through the Ashoka Young Scholars Programme. The workshop ran over four weeks in May and June 2025, with students from grades 9 to 12.</p>
+            <p>Most of these students had never written code, so we needed to teach emergence and computation in a way that stayed playful.</p>
+          </div>
+
+          <!-- Approach -->
+          <h2>Approach</h2>
+
+          <p>The first activity had no screens at all. Students stood in a grid holding cards (white for alive, black for dead) and applied the neighbour rules to each other, so they could feel how the logic worked before writing any code.</p>
+
+          <p>We projected a custom p5.js simulation onto the ceiling while students worked on laptops below. This kept the Game of Life visible overhead as a shared reference without taking over their screens.</p>
+
+          <p>We began with 1D Wolfram rules to build intuition, then moved to the full 2D Game of Life. By day two, students were filling in scaffolded code templates for grid initialisation, neighbour counting, and rule application. Each student left with a working simulation.</p>
+
+          <!-- Photo Gallery -->
+          <div class="project-content__gallery">
+            <figure class="project-content__gallery-item">
+              <img src="/assets/img/workshops/ca-1.jpeg" alt="Yesirat Sanni teaching from the front of the classroom, students visible working on laptops in the foreground" loading="lazy">
+              <figcaption>Yesirat Sanni leading a session.</figcaption>
+            </figure>
+            <figure class="project-content__gallery-item">
+              <img src="/assets/img/workshops/ca-2.jpeg" alt="Ceiling projection of Game of Life simulation during a demonstration" loading="lazy">
+              <figcaption>Ceiling projection during a demonstration.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Co-teaching -->
+          <h2>Co-teaching</h2>
+
+          <p>Yesirat Sanni, a third-year Mathematics and Computer Science student interning with the Makerspace and Young Scholars Programme, led most of each session. We designed the material and pedagogy together, tweaking activities between batches based on what we observed working in class. Yesirat handled the conceptual explanations and debugging; I took care of the unplugged demonstrations, p5.js simulation, and code-along portions.</p>
+
+          <!-- Workshop Structure -->
+          <h2>Workshop Structure</h2>
+
+          <div class="project-content__two-col">
+            <div class="project-content__col">
+              <h3>Day 1</h3>
+              <ul>
+                <li>Introduction to cellular automata, from 1D rules to the 2D Game of Life</li>
+                <li>Unplugged demonstration with students acting as cells</li>
+                <li>Interactive simulation to explore gliders, oscillators, and still lifes</li>
+                <li>Project setup in the p5.js web editor</li>
+                <li>Designing cellular automata art for a public gallery</li>
+              </ul>
+            </div>
+            <div class="project-content__col">
+              <h3>Day 2</h3>
+              <ul>
+                <li>Code-along with scaffolded templates</li>
+                <li>Grid initialisation, neighbour counting, rule application</li>
+                <li>Each student leaves with a working Game of Life simulation</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Technical Notes -->
+          <h2>Technical Notes</h2>
+
+          <p>The grid uses toroidal topology, meaning cells at the right edge neighbour cells on the left. We handle this with modular arithmetic: <code>(x + i + cols) % cols</code>.</p>
+
+          <p>To avoid corrupting state mid-computation, we use double-buffering with two grids swapped each frame: <code>[grid, nextGrid] = [nextGrid, grid]</code>.</p>
+
+          <p>The simulation code is split into <code>gameLogic.js</code>, <code>grid.js</code>, <code>display.js</code>, <code>ui.js</code>, and <code>patterns.js</code>.</p>
+
+          <!-- Links -->
+          <h2>Links</h2>
+
+          <ul class="project-content__links">
+            <li><a href="https://deeprajpandey.com/cellular-automata-workshop/" target="_blank" rel="noopener noreferrer">Workshop site &rarr;</a></li>
+            <li><a href="https://editor.p5js.org/DeeprajPandey/sketches/x6ZYwk4nx" target="_blank" rel="noopener noreferrer">Full simulation (p5.js) &rarr;</a></li>
+            <li><a href="https://editor.p5js.org/DeeprajPandey/sketches/ykQccHqhN" target="_blank" rel="noopener noreferrer">Student template (p5.js) &rarr;</a></li>
+          </ul>
+
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1/dist/lenis.min.js"></script>
+  <script src="/assets/js/smooth-scroll.js"></script>
+  <script src="/assets/js/script.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+
+  <title>Cellular Automata Workshop (v2) - Deepraj Pandey</title>
+
+  <script type="module">
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
+  <link rel="subresource stylesheet" href="/assets/css/resets.css" as="style">
+  <link rel="subresource stylesheet" href="/assets/css/styles.css" as="style">
+  <link rel="preload" href="/assets/fonts/Reforma1918-GrisItalica.woff2" as="font" type="font/woff2"
+    crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/Reforma1969-Blanca.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/assets/css/print.css" media="print">
+
+  <meta name="description"
+    content="Pixels That Think: A workshop introducing 160 high school students to cellular automata and computational thinking through Conway's Game of Life.">
+
+  <meta property="og:title" content="Cellular Automata Workshop - Deepraj Pandey">
+  <meta property="og:description"
+    content="A workshop introducing high school students to cellular automata and computational thinking through Conway's Game of Life.">
+  <meta property="og:image" content="https://www.deeprajpandey.github.io/assets/img/workshops/ca-2.jpeg">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.deeprajpandey.github.io/projects/cellular-automata-workshop">
+
+  <link rel="canonical" href="https://www.deeprajpandey.github.io/projects/cellular-automata-workshop">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#003153" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#FFEFD5" media="(prefers-color-scheme: light)">
+</head>
+
+<body id="homepage">
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Theme Toggle -->
+  <div class="checkbox">
+    <input type="checkbox" id="checkbox_t">
+    <label for="checkbox_t" class="label">
+      <ion-icon name="sunny" id="sun"></ion-icon>
+      <ion-icon name="moon" id="moon"></ion-icon>
+      <div class="ball"></div>
+    </label>
+  </div>
+
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="section section--project-hero">
+      <div class="section__container">
+        <nav class="about__nav">
+          <a href="/" class="about__back">&larr; Back to home</a>
+        </nav>
+
+        <header class="project-hero__header">
+          <h1 class="hero__name">Pixels That Think</h1>
+          <p class="project-hero__meta">160 students &bull; 4 weeks &bull; Summer 2025</p>
+        </header>
+      </div>
+
+      <figure class="project-hero__figure">
+        <img src="/assets/img/workshops/workshop-site.png" alt="Workshop site homepage showing Pixels That Think title with colourful cellular automata pattern" class="project-hero__img">
+        <figcaption class="project-hero__caption">
+          The workshop site with an interactive 1D cellular automata demonstration.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- Context -->
+    <section class="section section--short section--project-content">
+      <div class="section__container">
+        <article class="project-content">
+
+          <div class="project-content__lede">
+            <p>A 4-hour workshop on cellular automata for high school students, run through the Ashoka Young Scholars Programme. 160 students from grades 9 to 12 across four weeks in May and June 2025.</p>
+            <p>The goal: teach computation through Conway's Game of Life, starting from paper and ending with working code. No prior programming required.</p>
+          </div>
+
+          <!-- Approach -->
+          <h2>Approach</h2>
+
+          <p>We started without screens. Students stood in a grid holding cards (white for alive, black for dead) and manually applied the neighbour rules to each other. This made the logic physical before anyone touched a keyboard.</p>
+
+          <p>From there, we moved to a custom p5.js simulation projected onto the ceiling while students worked on laptops below. The ceiling projection was a simple jig Ojas Tripathi built from two planks of wood and plywood.</p>
+
+          <p>The structure: 1D Wolfram rules first to build intuition, then the full 2D Game of Life. By day two, students were filling in scaffolded code templates (grid initialisation, neighbour counting, rule application) and leaving with working simulations.</p>
+
+          <!-- Co-teaching -->
+          <h2>Co-teaching</h2>
+
+          <figure class="project-content__figure project-content__figure--inline">
+            <img src="/assets/img/workshops/ca-1.jpeg" alt="Yesirat Sanni teaching from the front of the classroom, students visible working on laptops in the foreground" loading="lazy">
+            <figcaption>Yesirat Sanni, who joined as a Makerspace intern and ended up leading 70% of the sessions.</figcaption>
+          </figure>
+
+          <p>I co-taught with Yesirat Sanni, a third-year Mathematics and Computer Science student interning with both the Makerspace and Young Scholars Programme. The plan was for me to lead most sessions while she assisted.</p>
+
+          <p>By the second week, Yesirat was leading the majority: explaining rules, debugging student code, running the unplugged demonstrations. I handled the simulation tool and the code-along portions.</p>
+
+          <figure class="project-content__figure project-content__figure--small">
+            <img src="/assets/img/workshops/ca-2.jpeg" alt="Ceiling projection of Game of Life simulation during a demonstration" loading="lazy">
+            <figcaption>Ceiling projection during a demonstration.</figcaption>
+          </figure>
+
+          <!-- Technical Notes -->
+          <h2>Technical Notes</h2>
+
+          <ul>
+            <li><strong>Toroidal topology:</strong> The grid wraps. Cells at the right edge neighbour cells on the left, using modular arithmetic: <code>(x + i + cols) % cols</code></li>
+            <li><strong>Double-buffering:</strong> Two grids, swapped each frame (<code>[grid, nextGrid] = [nextGrid, grid]</code>) to avoid corrupting state mid-update</li>
+            <li><strong>Rule 110:</strong> One of the 256 elementary 1D automata, proven Turing-complete. We used this to show that simple local rules can compute anything</li>
+            <li><strong>Rule 90:</strong> Generates the Sierpinski triangle. Good for showing how fractals emerge from cellular automata</li>
+          </ul>
+
+          <!-- Links -->
+          <h2>Links</h2>
+
+          <ul class="project-content__links">
+            <li><a href="https://deeprajpandey.com/cellular-automata-workshop/" target="_blank" rel="noopener noreferrer">Workshop site &rarr;</a></li>
+            <li><a href="https://editor.p5js.org/DeeprajPandey/sketches/x6ZYwk4nx" target="_blank" rel="noopener noreferrer">Full simulation (p5.js) &rarr;</a></li>
+            <li><a href="https://editor.p5js.org/DeeprajPandey/sketches/ykQccHqhN" target="_blank" rel="noopener noreferrer">Student template (p5.js) &rarr;</a></li>
+          </ul>
+
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1/dist/lenis.min.js"></script>
+  <script src="/assets/js/smooth-scroll.js"></script>
+  <script src="/assets/js/script.js" type="module"></script>
+</body>
+
+</html>

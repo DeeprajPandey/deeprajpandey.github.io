@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+
+  <title>The Indian Car Attack - Deepraj Pandey</title>
+
+  <script type="module">
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
+  <link rel="subresource stylesheet" href="/assets/css/resets.css" as="style">
+  <link rel="subresource stylesheet" href="/assets/css/styles.css" as="style">
+  <link rel="preload" href="/assets/fonts/Reforma1918-GrisItalica.woff2" as="font" type="font/woff2"
+    crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/Reforma1969-Blanca.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/assets/css/print.css" media="print">
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
+
+  <meta name="theme-color" content="#003153" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#FFEFD5" media="(prefers-color-scheme: light)">
+</head>
+
+<body id="homepage">
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Theme Toggle -->
+  <div class="checkbox">
+    <input type="checkbox" id="checkbox_t">
+    <label for="checkbox_t" class="label">
+      <ion-icon name="sunny" id="sun"></ion-icon>
+      <ion-icon name="moon" id="moon"></ion-icon>
+      <div class="ball"></div>
+    </label>
+  </div>
+
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="section section--project-hero">
+      <div class="section__container">
+        <nav class="about__nav">
+          <a href="/index.html" class="about__back">&larr; Back to home</a>
+        </nav>
+
+        <header class="project-hero__header">
+          <h1 class="hero__name">The Indian Car Attack</h1>
+          <p class="project-hero__meta">Cyber Physical Systems Security &bull; Spring 2021</p>
+        </header>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section section--short section--project-content">
+      <div class="section__container">
+        <article class="project-content">
+
+          <div class="project-content__lede">
+            <p>Tested replay and roll jam attacks on a Suzuki Swift Dzire's remote keyless entry system using software-defined radio. Found that the 2020 model uses KeeLoq encryption, which has been broken since 2008.</p>
+          </div>
+
+          <!-- Background -->
+          <h2>Background</h2>
+
+          <p>Car locking mechanisms have evolved significantly. Physical keys gave way to RFID immobilisers, then to Remote Keyless Entry (RKE) systems, and now to Passive Keyless Entry and Start (PKES). Each generation introduced new attack surfaces.</p>
+
+          <table class="project-content__table">
+            <thead>
+              <tr>
+                <th>Lock Type</th>
+                <th>Entry</th>
+                <th>Ignition</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Physical Keys</td>
+                <td>Physical key</td>
+                <td>Physical key</td>
+              </tr>
+              <tr>
+                <td>Physical Keys + RFID</td>
+                <td>Physical key</td>
+                <td>Physical key + RFID</td>
+              </tr>
+              <tr>
+                <td>Remote Keyless Entry</td>
+                <td>RF signal (active)</td>
+                <td>Physical key + RFID</td>
+              </tr>
+              <tr>
+                <td>PKES</td>
+                <td>RF signal (passive)</td>
+                <td>RF signal (passive)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>RKE systems operate in the Ultra High Frequency range (315 or 433 MHz) and use On-Off Keyed (OOK) modulation with Pulse Width Modulation (PWM) for the baseband signal. The key fob transmits only when a button is pressed, conserving battery.</p>
+
+          <!-- Setup -->
+          <h2>Setup</h2>
+
+          <p>I procured a replacement Nippon keyless entry system from a Suzuki dealer: two key fobs, central locking unit, and wire harness. Opening the key fob revealed a Microchip 12F635 microcontroller and an RF IC.</p>
+
+          <p>For the attack apparatus:</p>
+          <ul>
+            <li><strong>Receiver:</strong> RTL-SDR RTL2832U with ANT-700 antenna (300 MHz - 1.1 GHz)</li>
+            <li><strong>Transmitter:</strong> YARD Stick One (TI CC111-F32 chip, supports FSK and OOK)</li>
+            <li><strong>Software:</strong> gqrx for visualisation, rtl_433 for protocol analysis, Universal Radio Hacker for decoding, rfcat for transmission</li>
+          </ul>
+
+          <!-- Attacks -->
+          <h2>Attacks</h2>
+
+          <h3>Frequency Detection</h3>
+
+          <p>Using gqrx with the RTL-SDR, I tuned to 433.92 MHz (standard RKE frequency) and recorded keypresses. The FFT and waterfall plots confirmed the operating frequency at 433.9 MHz.</p>
+
+          <h3>Modulation Analysis</h3>
+
+          <p>Running <code>rtl_433 -f 433900200 -A</code> with pulse analysis detected OOK_PWM encoding. This confirmed the carrier wave uses On-Off Keying and the baseband signal uses Pulse Width Modulation.</p>
+
+          <h3>Data Rate Calculation</h3>
+
+          <p>Recording the signal in Audacity and measuring a single bit transition:</p>
+
+          <p>\[0.01040\text{s} - 0.00990\text{s} = 0.0005\text{s} = 500 \mu\text{s}\]</p>
+
+          <p>This gives a data rate of \(\frac{1}{500 \times 10^{-6}} = 2000\) bits/second.</p>
+
+          <h3>Replay Attack</h3>
+
+          <p>A simple replay attack failed. Inspection of decoded data showed the code changes on every keypress, indicating rolling codes with encryption. However, a one-time "replay attack at a distance" remains possible: recording the signal when the target is out of range of the car, then replaying it later.</p>
+
+          <h3>Roll Jam Attack</h3>
+
+          <p>The roll jam attack exploits rolling code systems by jamming the receiver while recording the key fob signal. When the user presses the button again, the attacker records the second code, transmits the first (which the user thinks finally worked), and saves the second code for later use.</p>
+
+          <p>The attack requires jamming on a nearby frequency (e.g., 431.56 MHz) that falls within the receiver's listening window, while simultaneously recording the legitimate transmission.</p>
+
+          <!-- Findings -->
+          <h2>Findings</h2>
+
+          <p>The rtl_433 analysis identified the key fob as a Microchip HCS200, which uses the Classic KeeLoq algorithm for code hopping and encryption. The HCS200 dates from 2002 and uses a Non-Linear Feedback Shift Register (NLFSR) where a 64-bit manufacturer code generates a 64-bit crypt key stored in read-protected EEPROM.</p>
+
+          <p>KeeLoq is a block cipher using 32-bit blocks with a 64-bit key. Multiple cryptanalyses have demonstrated it can be broken, including FPGA-based attacks and side-channel attacks on the microcontroller. The Swift Dzire 2020 model ships with a key fob specification from 2002, using encryption that has been publicly broken since 2008.</p>
+
+          <!-- Links -->
+          <h2>Links</h2>
+
+          <ul class="project-content__links">
+            <li><a href="https://github.com/merbanan/rtl_433/blob/master/src/devices/hcs200.c" target="_blank" rel="noopener noreferrer">HCS200 driver for rtl_433 &rarr;</a></li>
+          </ul>
+
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1/dist/lenis.min.js"></script>
+  <script src="/assets/js/smooth-scroll.js"></script>
+  <script src="/assets/js/script.js" type="module"></script>
+</body>
+
+</html>

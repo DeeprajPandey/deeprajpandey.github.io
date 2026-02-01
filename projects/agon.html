@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+
+  <title>AGON: Alternative General Object Notation - Deepraj Pandey</title>
+
+  <script type="module">
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
+  <link rel="subresource stylesheet" href="/assets/css/resets.css" as="style">
+  <link rel="subresource stylesheet" href="/assets/css/styles.css" as="style">
+  <link rel="preload" href="/assets/fonts/Reforma1918-GrisItalica.woff2" as="font" type="font/woff2"
+    crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/Reforma1969-Blanca.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/assets/css/print.css" media="print">
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body);"></script>
+
+  <meta name="theme-color" content="#003153" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#FFEFD5" media="(prefers-color-scheme: light)">
+</head>
+
+<body id="homepage">
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Theme Toggle -->
+  <div class="checkbox">
+    <input type="checkbox" id="checkbox_t">
+    <label for="checkbox_t" class="label">
+      <ion-icon name="sunny" id="sun"></ion-icon>
+      <ion-icon name="moon" id="moon"></ion-icon>
+      <div class="ball"></div>
+    </label>
+  </div>
+
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="section section--project-hero">
+      <div class="section__container">
+        <nav class="about__nav">
+          <a href="/index.html" class="about__back">&larr; Back to home</a>
+        </nav>
+
+        <header class="project-hero__header">
+          <h1 class="hero__name">AGON: Alternative General Object Notation</h1>
+          <p class="project-hero__meta">with Adhiraj Singh &bull; Theory of Computation &bull; Spring 2021</p>
+        </header>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section section--short section--project-content">
+      <div class="section__container">
+        <article class="project-content">
+
+          <div class="project-content__lede">
+            <p>Built a binary data interchange format that is 70% faster at encoding and produces 71% smaller files than JSON. Compared against V8's serialisation module, AGON generated files 0.14% smaller for our test payloads.</p>
+          </div>
+
+          <!-- Approach -->
+          <h2>Approach</h2>
+
+          <p>JSON prioritises human readability, but this comes at a cost in size and bandwidth. We designed AGON to store data in a custom binary format with a formal grammar specification, then built an encoder and decoder in TypeScript.</p>
+
+          <p>The format uses binary markers for primitive data types and start/end markers around non-primitive structures. This eliminates the overhead of string-based encoding while maintaining interoperability with JSON data structures.</p>
+
+          <!-- The Grammar -->
+          <h2>The Grammar</h2>
+
+          <p>Our encoder and decoder adhere to a context-free grammar that covers objects, arrays, numbers, booleans, and strings. The grammar has no left-recursion, and each production rule starts with a unique binary marker, removing the need for look-ahead when parsing.</p>
+
+<pre><code>&lt;S&gt;   ::= &lt;V&gt;
+&lt;V&gt;   ::= &lt;O&gt; | &lt;A&gt; | &lt;N&gt; | &lt;B&gt; | &lt;Str&gt;
+&lt;N&gt;   ::= &lt;I&gt; | &lt;F&gt;
+&lt;I&gt;   ::= t0 &lt;T&gt; | t1 &lt;TT&gt; | t2 &lt;TTTT&gt; | t3 &lt;TTTTTTTT&gt;
+&lt;F&gt;   ::= t4 &lt;TTTT&gt; | t5 &lt;TTTTTTTT&gt;
+&lt;B&gt;   ::= t6 | t7
+&lt;A&gt;   ::= t8 &lt;Ai&gt; t9
+&lt;Ai&gt;  ::= &lt;V&gt; | &lt;Ai&gt; &lt;V&gt; | ε
+&lt;O&gt;   ::= t10 &lt;Oi&gt; t11
+&lt;Oi&gt;  ::= &lt;str&gt; &lt;V&gt; | &lt;Oi&gt; &lt;str&gt; &lt;V&gt; | ε
+&lt;str&gt; ::= t12 &lt;P&gt; 0
+&lt;P&gt;   ::= &lt;T0&gt; | &lt;P&gt; &lt;T0&gt; | ε
+&lt;T0&gt;  ::= 0x1 | 0x2 | ... | 0xFF
+&lt;T&gt;   ::= 0x0 | &lt;T0&gt;</code></pre>
+
+          <!-- Terminal Markers -->
+          <h2>Terminal Markers</h2>
+
+          <p>We use 16 different terminals to represent data types. Each marker is a single byte:</p>
+
+<pre><code>arrayStart:    0xF0    arrayEnd:      0xF1
+objectStart:   0xF2    objectEnd:     0xF3
+byte:          0xFA    short:         0xFB
+int:           0xFC    long:          0xFD
+double:        0xFE    float:         0xFF
+booleanTrue:   0xF4    booleanFalse:  0xF5
+string:        0xF6    buffer:        0xF7
+date:          0xEF    null:          0xD0</code></pre>
+
+          <!-- Encoder -->
+          <h2>Encoder</h2>
+
+          <p>The encoder converts JavaScript objects, arrays, and primitives to binary format. Key design decisions:</p>
+
+          <ul>
+            <li><strong>Booleans:</strong> Single byte (0xF4 or 0xF5) instead of 4-5 bytes for "true"/"false"</li>
+            <li><strong>Numbers:</strong> Type inference determines the smallest C-like type (byte, short, int, long) that can hold the value</li>
+            <li><strong>Strings:</strong> UTF-16 encoded with null termination</li>
+            <li><strong>Objects/Arrays:</strong> Start/end markers with recursive encoding of contents</li>
+          </ul>
+
+          <!-- Decoder -->
+          <h2>Decoder</h2>
+
+          <p>The decoder uses a reverse terminal map to identify markers and a stack to track nested structures. When it encounters an objectStart or arrayStart, it pushes to the stack and creates the appropriate container. Matching end markers pop from the stack.</p>
+
+          <p>For numbers, we use a DataView to handle binary conversions according to the platform's endianness automatically.</p>
+
+          <!-- Benchmarks -->
+          <h2>Benchmarks</h2>
+
+          <p>We ran 15 benchmark rounds, each generating 15 random objects (roughly 50% arbitrarily nested between 1-20 levels), totalling 225 test objects.</p>
+
+          <p><strong>Encoding speed:</strong> AGON completed typical serialisation in 16.24 ms versus JSON's 55.08 ms, a 70.5% improvement.</p>
+
+          <p><strong>File size:</strong> JSON files averaged 2320 bytes; AGON files averaged 667 bytes, a 71.3% reduction. AGON files were also 0.14% smaller than V8's serialisation output.</p>
+
+          <p>Decoding was slower than JSON in our implementation, which we identified as an area for future optimisation.</p>
+
+          <!-- Links -->
+          <h2>Links</h2>
+
+          <ul class="project-content__links">
+            <li><a href="https://github.com/adiwajshing/GON" target="_blank" rel="noopener noreferrer">Source code &rarr;</a></li>
+            <li><a href="https://bit.ly/agon_data" target="_blank" rel="noopener noreferrer">Benchmark data &rarr;</a></li>
+          </ul>
+
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1/dist/lenis.min.js"></script>
+  <script src="/assets/js/smooth-scroll.js"></script>
+  <script src="/assets/js/script.js" type="module"></script>
+</body>
+
+</html>
