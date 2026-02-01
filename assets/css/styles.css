@@ -1025,21 +1025,10 @@ html[data-theme="dark"] .project-card__tag {
   opacity: 0.85;
 }
 
-/* Hover context reveal */
 .project-card__context {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.3s ease;
-  margin-top: 0;
+  margin-top: var(--space-sm);
   font-size: 0.85rem;
   color: var(--clr-resume-time);
-}
-
-.project-card:hover .project-card__context {
-  max-height: 100px;
-  opacity: 1;
-  margin-top: var(--space-sm);
 }
 
 .project-card__link {
@@ -1312,8 +1301,6 @@ html[data-theme="dark"] .footer__copyright {
   }
 
   .project-card__context {
-    max-height: none;
-    opacity: 1;
     margin-top: var(--space-xs);
   }
 
