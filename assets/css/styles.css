@@ -833,7 +833,7 @@ html.lenis, html.lenis body {
 
 .now__grid {
   display: grid;
-  grid-template-columns: 7fr 3fr;
+  grid-template-columns: 1fr;
   gap: var(--space-lg);
   align-items: start;
 }
