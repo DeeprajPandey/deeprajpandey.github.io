@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept B — Phase Space · Deepraj Pandey</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reforma superfamily (self-hosted) ── 2018 = the confident grotesque ─ */
+@font-face{font-family:"Reforma2018";src:url('/assets/fonts/Reforma2018/Reforma2018-Gris.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma2018";src:url('/assets/fonts/Reforma2018/Reforma2018-Negra.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma2018";src:url('/assets/fonts/Reforma2018/Reforma2018-GrisItalica.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Reforma1969";src:url('/assets/fonts/Reforma1969/Reforma1969-Gris.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma1969";src:url('/assets/fonts/Reforma1969/Reforma1969-GrisItalica.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --paper:#F4ECDA;
+  --ink:#10181F;            /* near-black */
+  --ink-soft:#62696F;
+  --rule:#D5CAB0;
+  --signal:#0B7C73;         /* the one accent: instrument teal / phosphor */
+  --signal-glow:rgba(11,124,115,.16);
+  --grotesk:"Reforma2018",-apple-system,system-ui,sans-serif;
+  --body:"Reforma1969",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.5}
+::selection{background:var(--signal);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,4vw,4rem)}
+
+/* ── Masthead ──────────────────────────────────────────────────────── */
+.masthead{display:flex;justify-content:space-between;align-items:baseline;
+  padding:1.6rem 0 1.4rem;border-bottom:1px solid var(--ink);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.masthead .meta{color:var(--ink-soft);font-size:.66rem}
+
+/* ── Hero with live attractor ──────────────────────────────────────── */
+.hero{position:relative;padding:clamp(3rem,8vw,6rem) 0 clamp(2.5rem,6vw,4rem)}
+#attractor{position:absolute;inset:-2rem 0 0 0;width:100%;height:100%;
+  z-index:0;pointer-events:none;mix-blend-mode:multiply;opacity:.9}
+.hero__inner{position:relative;z-index:1}
+.readout{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:2rem;
+  display:flex;gap:1.4rem;flex-wrap:wrap}
+.readout .dot{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;
+  background:var(--signal);box-shadow:0 0 0 4px var(--signal-glow);margin-right:.5rem;
+  vertical-align:middle;animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.statement{font-family:var(--grotesk);font-weight:700;
+  font-size:clamp(2.1rem,5.4vw,4.1rem);line-height:1.04;letter-spacing:-.025em;
+  max-width:17ch;text-wrap:balance}
+.statement .sig{color:var(--signal)}
+.lede{margin-top:2.2rem;max-width:50ch;font-size:clamp(1.08rem,1.7vw,1.28rem);
+  line-height:1.55;color:var(--ink)}
+.lede b{font-family:var(--grotesk);font-weight:700;color:var(--signal);
+  font-size:.96em;letter-spacing:-.01em}
+
+/* ── Register / selected work ──────────────────────────────────────── */
+.reg-head{display:grid;grid-template-columns:3rem 9rem 1fr 4rem;gap:1.5rem;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);
+  padding:.7rem 0;margin-top:clamp(2.5rem,6vw,4rem)}
+.row{display:grid;grid-template-columns:3rem 9rem 1fr 4rem;gap:1.5rem;align-items:center;
+  padding:1.35rem 0;border-bottom:1px solid var(--rule);position:relative;
+  transition:background .3s}
+.row::before{content:"";position:absolute;left:-100vw;right:-100vw;top:0;bottom:0;
+  background:var(--signal-glow);opacity:0;transition:opacity .3s;z-index:-1}
+.row:hover::before{opacity:1}
+.row .idx{font-family:var(--mono);font-size:.72rem;color:var(--signal)}
+.row .dom{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft)}
+.row .main .t{font-family:var(--grotesk);font-weight:700;
+  font-size:clamp(1.15rem,2vw,1.5rem);letter-spacing:-.02em;line-height:1.1}
+.row .main .d{font-size:.98rem;color:var(--ink-soft);margin-top:.3rem;max-width:54ch;line-height:1.45}
+.row .go{font-family:var(--mono);font-size:1rem;color:var(--signal);text-align:right;
+  transform:translateX(-.4rem);opacity:.4;transition:transform .3s,opacity .3s}
+.row:hover .go{transform:translateX(0);opacity:1}
+@media(max-width:720px){
+  .reg-head{display:none}
+  .row{grid-template-columns:2.4rem 1fr;gap:.4rem .9rem}
+  .row .dom{grid-column:2;margin-bottom:.2rem}
+  .row .main{grid-column:1/-1}
+  .row .go{position:absolute;top:1.35rem;right:0}
+}
+
+/* ── Anchors ───────────────────────────────────────────────────────── */
+.anchors{margin-top:clamp(3rem,7vw,5rem);display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule)}
+.anchors .cell{background:var(--paper);padding:1.3rem 1.2rem}
+.anchors .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:.5rem}
+.anchors .v{font-family:var(--grotesk);font-weight:400;font-size:1.05rem;line-height:1.2}
+
+/* ── Grace note ────────────────────────────────────────────────────── */
+.grace{margin-top:clamp(3rem,7vw,5rem);display:grid;
+  grid-template-columns:minmax(0,42ch) 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:center}
+.grace .note{font-family:var(--grotesk);font-weight:400;font-style:italic;
+  font-size:clamp(1.25rem,2.2vw,1.7rem);line-height:1.3}
+.grace figure{position:relative}
+.grace img{width:100%;display:block;filter:grayscale(.15) contrast(1.03)}
+.grace figcaption{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-soft);margin-top:.55rem}
+@media(max-width:680px){.grace{grid-template-columns:1fr}}
+
+/* ── Contact ───────────────────────────────────────────────────────── */
+.contact{margin-top:clamp(4rem,9vw,7rem);border-top:1px solid var(--ink);
+  padding:clamp(2.5rem,6vw,4rem) 0 clamp(3rem,7vw,5rem)}
+.contact .pre{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem}
+.contact a.email{font-family:var(--grotesk);font-weight:700;
+  font-size:clamp(1.9rem,6vw,3.8rem);letter-spacing:-.03em;line-height:1;
+  display:inline-block;position:relative}
+.contact a.email .cursor{color:var(--signal);animation:blink 1.1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.contact .sub{font-size:1.05rem;color:var(--ink-soft);margin-top:1.2rem;max-width:46ch}
+
+/* ── Colophon ──────────────────────────────────────────────────────── */
+.colophon{border-top:1px solid var(--rule);padding:2rem 0 3rem;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.05em;color:var(--ink-soft);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem}
+.colophon .swatch{display:flex;align-items:center;gap:.5rem}
+.colophon .chip{width:1rem;height:1rem;border:1px solid var(--ink)}
+
+@media(prefers-reduced-motion:reduce){
+  #attractor{opacity:.7}
+  .readout .dot,.contact a.email .cursor{animation:none}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div>Deepraj Pandey</div>
+    <div class="meta">Concept B — “Phase Space” · instrument readout</div>
+  </header>
+
+  <!-- HERO + LIVE ATTRACTOR -->
+  <section class="hero">
+    <canvas id="attractor" aria-hidden="true"></canvas>
+    <div class="hero__inner">
+      <div class="readout">
+        <span><span class="dot"></span>System: live</span>
+        <span>Clifford attractor · a=−1.7 b=1.8 c=−0.9 d=−0.4</span>
+      </div>
+      <h1 class="statement">
+        Order out of a system is the <span class="sig">whole job.</span>
+      </h1>
+      <p class="lede">
+        I build at the seam between hard systems and real science — a microVM scheduler one week,
+        a focus-stacking microscope the next. Right now I'm building <b>Burst</b>: background compute
+        that runs long jobs in isolated cloud machines, with nothing to provision or manage.
+      </p>
+    </div>
+  </section>
+
+  <!-- REGISTER -->
+  <div class="reg-head">
+    <div>№</div><div>Domain</div><div>Selected work · why it matters</div><div></div>
+  </div>
+
+  <a class="row" href="#">
+    <div class="idx">01</div>
+    <div class="dom">Systems</div>
+    <div class="main">
+      <div class="t">Burst</div>
+      <div class="d">VM-level isolation, warm pool, hardened networking — a one-line job runs in the cloud and feels like a function call.</div>
+    </div>
+    <div class="go">↗</div>
+  </a>
+
+  <a class="row" href="https://royalsocietypublishing.org/doi/10.1098/rspb.2025.0333">
+    <div class="idx">02</div>
+    <div class="dom">Science</div>
+    <div class="main">
+      <div class="t">Red fox of the Trans-Himalaya</div>
+      <div class="d">Co-authored, peer-reviewed in <em>Proceedings of the Royal Society B</em> — predator persistence in dog-dominated terrain.</div>
+    </div>
+    <div class="go">↗</div>
+  </a>
+
+  <a class="row" href="/projects/tica.html">
+    <div class="idx">03</div>
+    <div class="dom">Security</div>
+    <div class="main">
+      <div class="t">The Indian Car Attack</div>
+      <div class="d">Replayed and roll-jammed a 2020 keyless entry with an SDR. It still shipped KeeLoq — broken since 2008.</div>
+    </div>
+    <div class="go">↗</div>
+  </a>
+
+  <a class="row" href="/projects/agon.html">
+    <div class="idx">04</div>
+    <div class="dom">Format</div>
+    <div class="main">
+      <div class="t">AGON</div>
+      <div class="d">A binary interchange format from a hand-written grammar: 70% faster to encode, 71% smaller than JSON.</div>
+    </div>
+    <div class="go">↗</div>
+  </a>
+
+  <a class="row" href="/projects/cellular-automata-workshop.html">
+    <div class="idx">05</div>
+    <div class="dom">For others</div>
+    <div class="main">
+      <div class="t">Cellular Automata Workshop</div>
+      <div class="d">160 high-schoolers, computational thinking through Conway's Game of Life — a simulator I built and co-taught.</div>
+    </div>
+    <div class="go">↗</div>
+  </a>
+
+  <!-- ANCHORS -->
+  <div class="anchors">
+    <div class="cell"><div class="k">Peer-reviewed</div><div class="v">Proc. Royal Society B</div></div>
+    <div class="cell"><div class="k">Research</div><div class="v">Microsoft Research</div></div>
+    <div class="cell"><div class="k">Fellowship</div><div class="v">Oxford · Schmidt AI in Science</div></div>
+    <div class="cell"><div class="k">Lab · 4 yrs</div><div class="v">Ashoka R&amp;F Lab</div></div>
+  </div>
+
+  <!-- GRACE NOTE -->
+  <div class="grace">
+    <p class="note">Off the clock: a camera, a calligraphy pen, and F1 on Sundays.</p>
+    <figure>
+      <img src="/assets/img/photos/slit-2024.jpeg" alt="A figure glimpsed through a narrow opening">
+      <figcaption>Fig. — Through the slit, 2024 · evidence of the eye</figcaption>
+    </figure>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="pre">// the one job of this page</div>
+    <a class="email" href="mailto:deeprajpandey@pm.me">deeprajpandey@pm.me<span class="cursor">_</span></a>
+    <p class="sub">Founders, researchers, the curious — I mostly just want to meet range-y people over coffee.</p>
+  </section>
+
+  <!-- COLOPHON -->
+  <footer class="colophon">
+    <div>Display — Reforma 2018 grotesque (Pampatype) · self-hosted</div>
+    <div>System / metadata — JetBrains Mono <em>(stand-in for Berkeley Mono)</em></div>
+    <div class="swatch"><span class="chip" style="background:#F4ECDA"></span> Paper #F4ECDA</div>
+    <div class="swatch"><span class="chip" style="background:#10181F"></span> Ink #10181F</div>
+    <div class="swatch"><span class="chip" style="background:#0B7C73"></span> Signal #0B7C73</div>
+  </footer>
+
+</div>
+
+<script>
+/* Clifford attractor — a slow, evolving system rendered low-contrast behind the
+   opening statement. Honors prefers-reduced-motion: paints one still frame. */
+(function(){
+  const cv = document.getElementById('attractor');
+  const ctx = cv.getContext('2d', {alpha:true});
+  const a=-1.7, b=1.8, c=-0.9, d=-0.4;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W,H,DPR,x=0.1,y=0.1, raf=null;
+
+  function size(){
+    DPR = Math.min(devicePixelRatio||1, 2);
+    const r = cv.getBoundingClientRect();
+    W = cv.width  = Math.max(1, r.width  * DPR);
+    H = cv.height = Math.max(1, r.height * DPR);
+  }
+
+  function plot(n){
+    ctx.fillStyle = 'rgba(11,124,115,0.5)';   // signal teal, multiplied onto paper
+    const sx = W/4.6, sy = H/4.6, ox = W/2, oy = H/2;
+    for(let i=0;i<n;i++){
+      const nx = Math.sin(a*y) + c*Math.cos(a*x);
+      const ny = Math.sin(b*x) + d*Math.cos(b*y);
+      x=nx; y=ny;
+      const px = ox + x*sx, py = oy + y*sy;
+      ctx.fillRect(px, py, DPR*0.7, DPR*0.7);
+    }
+  }
+
+  function start(){
+    size();
+    ctx.clearRect(0,0,W,H);
+    x=0.1;y=0.1;
+    if(reduce){ plot(120000); return; }   // single beautiful still frame
+    let drawn=0, budget=240000;
+    (function loop(){
+      if(drawn<budget){ plot(900); drawn+=900; raf=requestAnimationFrame(loop); }
+    })();
+  }
+
+  let t; addEventListener('resize',()=>{cancelAnimationFrame(raf);clearTimeout(t);t=setTimeout(start,150)});
+  start();
+})();
+</script>
+</body>
+</html>
