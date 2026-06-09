@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept A — Recto · Deepraj Pandey</title>
+
+<!-- Mono stands in for Berkeley Mono / Commit Mono (paid). Everything else is self-hosted. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reforma superfamily (already self-hosted in /assets/fonts) ───────── */
+@font-face{font-family:"Reforma1918";src:url('/assets/fonts/Reforma1918/Reforma1918-Gris.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma1918";src:url('/assets/fonts/Reforma1918/Reforma1918-GrisItalica.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Reforma1918";src:url('/assets/fonts/Reforma1918/Reforma1918-Negra.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma1969";src:url('/assets/fonts/Reforma1969/Reforma1969-Blanca.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma1969";src:url('/assets/fonts/Reforma1969/Reforma1969-Gris.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma1969";src:url('/assets/fonts/Reforma1969/Reforma1969-GrisItalica.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --paper:#F7EFDD;          /* warmer notebook page than the current papaya-whip */
+  --paper-deep:#F0E6CF;
+  --ink:#1B2A36;            /* near-black, warmed toward Prussian */
+  --ink-soft:#5A6068;
+  --rule:#D8CDB2;           /* hairline on paper */
+  --cinnabar:#C8341B;       /* the one accent: fox-rust / vermilion correction-ink / seal red */
+  --display:"Reforma1918",Georgia,serif;
+  --body:"Reforma1969",Georgia,serif;
+  --mono:"Spline Sans Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.5;
+  /* faint paper tooth */
+  background-image:radial-gradient(rgba(120,100,60,.035) 1px,transparent 1.4px);
+  background-size:4px 4px;
+}
+::selection{background:var(--cinnabar);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,4vw,4rem)}
+
+/* ── Masthead ──────────────────────────────────────────────────────── */
+.masthead{display:flex;justify-content:space-between;align-items:baseline;
+  padding:1.6rem 0 1.4rem;border-bottom:1px solid var(--ink)}
+.masthead .name{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:500}
+.masthead .meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;
+  color:var(--ink-soft);text-transform:uppercase}
+
+/* ── Opening statement ─────────────────────────────────────────────── */
+.opening{display:grid;grid-template-columns:1fr;gap:0;
+  padding:clamp(3.5rem,9vw,7rem) 0 clamp(2.5rem,6vw,4.5rem)}
+.opening .index{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--cinnabar);margin-bottom:2.2rem}
+.statement{font-family:var(--display);font-weight:400;
+  font-size:clamp(2rem,4.7vw,3.55rem);line-height:1.14;letter-spacing:-.01em;
+  max-width:18ch;text-wrap:balance}
+.statement em{font-style:italic}
+.statement .seam{color:var(--cinnabar);font-style:italic}
+.now{margin-top:2.6rem;display:grid;grid-template-columns:minmax(0,34ch) 1fr;gap:clamp(1.5rem,5vw,4rem);
+  align-items:start}
+.now .label{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);padding-top:.45rem;
+  border-top:1px solid var(--ink)}
+.now p{font-size:clamp(1.05rem,1.7vw,1.22rem);line-height:1.55;max-width:46ch}
+.now .building{color:var(--cinnabar)}
+
+/* ── Selected work ─────────────────────────────────────────────────── */
+.section-rule{display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--ink);padding-top:.7rem;margin-top:clamp(3rem,7vw,5rem)}
+.section-rule h2{font-family:var(--mono);font-weight:500;font-size:.74rem;
+  letter-spacing:.2em;text-transform:uppercase}
+.section-rule span{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;
+  color:var(--ink-soft);text-transform:uppercase}
+
+.works{margin-top:2.2rem}
+.work{display:grid;grid-template-columns:3.2rem minmax(0,16ch) 1fr;
+  gap:clamp(1rem,3vw,2.4rem);align-items:baseline;
+  padding:1.55rem 0;border-bottom:1px solid var(--rule);
+  transition:padding-left .35s cubic-bezier(.2,.7,.2,1)}
+.work:hover{padding-left:.6rem}
+.work .num{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+.work .domain{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--cinnabar);padding-top:.4rem}
+.work .title{font-family:var(--display);font-size:clamp(1.35rem,2.4vw,1.9rem);
+  font-weight:400;line-height:1.1;letter-spacing:-.01em;display:inline-block;
+  position:relative}
+.work .title::after{content:"";position:absolute;left:0;bottom:-.12em;height:1px;
+  width:0;background:var(--ink);transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.work:hover .title::after{width:100%}
+.work .why{font-size:1.04rem;line-height:1.5;color:var(--ink);margin-top:.55rem;
+  max-width:52ch}
+.work .why .q{color:var(--ink-soft)}
+.work .arrow{font-family:var(--mono);color:var(--cinnabar);opacity:0;
+  transition:opacity .3s;margin-left:.4rem}
+.work:hover .arrow{opacity:1}
+@media(max-width:680px){
+  .work{grid-template-columns:2rem 1fr;gap:.6rem 1rem}
+  .work .domain{grid-column:2;padding-top:0;margin-bottom:.3rem}
+  .work .body{grid-column:1/-1}
+}
+
+/* ── Credibility anchors ───────────────────────────────────────────── */
+.anchors{margin-top:clamp(3rem,7vw,5rem);border-top:1px solid var(--ink);
+  padding-top:1.4rem;display:flex;flex-wrap:wrap;gap:.5rem clamp(1.5rem,4vw,3rem)}
+.anchors .lead{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);width:100%;margin-bottom:.4rem}
+.anchors a, .anchors span.anchor{font-family:var(--body);font-size:1.05rem;
+  position:relative}
+.anchors a::after{content:"";position:absolute;left:0;bottom:-.18em;height:1px;
+  width:100%;background:var(--rule)}
+.anchors a:hover::after{background:var(--cinnabar)}
+
+/* ── Grace note ────────────────────────────────────────────────────── */
+.grace{margin-top:clamp(3.5rem,8vw,6rem);display:grid;
+  grid-template-columns:1fr minmax(0,40ch);gap:clamp(1.5rem,5vw,4rem);align-items:end}
+.grace figure{position:relative}
+.grace img{width:100%;display:block;filter:saturate(.9) contrast(1.02);
+  border:1px solid var(--ink)}
+.grace figcaption{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft);margin-top:.6rem}
+.grace .note{font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:clamp(1.3rem,2.3vw,1.8rem);line-height:1.25}
+@media(max-width:680px){.grace{grid-template-columns:1fr}}
+
+/* ── Contact / the one job ─────────────────────────────────────────── */
+.contact{margin-top:clamp(4rem,9vw,7rem);border-top:1px solid var(--ink);
+  padding:clamp(2.5rem,6vw,4rem) 0 clamp(3rem,7vw,5rem);text-align:center}
+.contact .pre{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:1.1rem}
+.contact a.email{font-family:var(--display);font-style:italic;
+  font-size:clamp(2rem,6vw,4rem);line-height:1;letter-spacing:-.01em;
+  position:relative;display:inline-block}
+.contact a.email::after{content:"";position:absolute;left:0;bottom:.04em;height:2px;
+  width:100%;background:var(--cinnabar);transform:scaleX(.0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.contact a.email:hover::after{transform:scaleX(1)}
+.contact .sub{font-size:1.05rem;color:var(--ink-soft);margin-top:1.4rem}
+
+/* ── Colophon / type specimen ──────────────────────────────────────── */
+.colophon{border-top:1px solid var(--rule);padding:2rem 0 3rem;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--ink-soft);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem}
+.colophon .swatch{display:flex;align-items:center;gap:.5rem}
+.colophon .chip{width:1rem;height:1rem;border:1px solid var(--ink)}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="name">Deepraj Pandey</div>
+    <div class="meta">Concept A — “Recto” · field-notebook</div>
+  </header>
+
+  <!-- OPENING STATEMENT -->
+  <section class="opening">
+    <div class="index">№ 01 — Opening statement</div>
+    <h1 class="statement">
+      I work at the <span class="seam">seam</span> between hard systems and real science.
+    </h1>
+    <div class="now">
+      <div class="label">Now / building</div>
+      <p>A microVM scheduler one week, a focus-stacking microscope the next. These days I'm building
+      <span class="building">Burst</span> — background compute that runs long jobs in isolated cloud machines,
+      with nothing to provision or manage.</p>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <div class="section-rule">
+    <h2>Selected work</h2>
+    <span>five of many · chosen for range</span>
+  </div>
+
+  <div class="works">
+    <a class="work" href="#">
+      <span class="num">01</span>
+      <span class="domain">Systems</span>
+      <span class="body">
+        <span class="title">Burst<span class="arrow">→</span></span>
+        <p class="why">VM-level isolation with a warm pool, so a one-line job from your laptop runs
+        in a hardened cloud machine and feels like a function call. <span class="q">Infrastructure that disappears.</span></p>
+      </span>
+    </a>
+
+    <a class="work" href="https://royalsocietypublishing.org/doi/10.1098/rspb.2025.0333">
+      <span class="num">02</span>
+      <span class="domain">Science</span>
+      <span class="body">
+        <span class="title">Balancing act: the red fox of the Trans-Himalaya<span class="arrow">→</span></span>
+        <p class="why">Co-authored, peer-reviewed in <em>Proceedings of the Royal Society B</em> — how a predator
+        persists in dog-dominated high-altitude landscapes.</p>
+      </span>
+    </a>
+
+    <a class="work" href="/projects/tica.html">
+      <span class="num">03</span>
+      <span class="domain">Security</span>
+      <span class="body">
+        <span class="title">The Indian Car Attack<span class="arrow">→</span></span>
+        <p class="why">Replayed and roll-jammed a 2020 keyless entry with an RTL-SDR.
+        <span class="q">It still shipped KeeLoq — broken since 2008.</span></p>
+      </span>
+    </a>
+
+    <a class="work" href="/projects/agon.html">
+      <span class="num">04</span>
+      <span class="domain">Format / craft</span>
+      <span class="body">
+        <span class="title">AGON<span class="arrow">→</span></span>
+        <p class="why">A binary interchange format from a hand-written grammar: 70% faster to encode,
+        71% smaller on the wire than JSON.</p>
+      </span>
+    </a>
+
+    <a class="work" href="/projects/cellular-automata-workshop.html">
+      <span class="num">05</span>
+      <span class="domain">For others</span>
+      <span class="body">
+        <span class="title">Cellular Automata Workshop<span class="arrow">→</span></span>
+        <p class="why">Taught 160 high-schoolers computational thinking through Conway's Game of Life —
+        a simulator I built and co-taught.</p>
+      </span>
+    </a>
+  </div>
+
+  <!-- CREDIBILITY ANCHORS -->
+  <div class="anchors">
+    <div class="lead">Elsewhere on the record</div>
+    <a href="https://royalsocietypublishing.org/doi/10.1098/rspb.2025.0333">Proceedings of the Royal Society B</a>
+    <span class="anchor">Microsoft Research</span>
+    <span class="anchor">Oxford — Schmidt AI in Science</span>
+    <span class="anchor">Ashoka Research &amp; Fabrication Lab · 4 yrs</span>
+  </div>
+
+  <!-- GRACE NOTE -->
+  <div class="grace">
+    <figure>
+      <img src="/assets/img/photos/bombay-airport-2024.jpeg" alt="Lone figure against a vast patterned wall, Bombay airport">
+      <figcaption>Fig. — Bombay, 2024 · 28mm, evidence of the eye</figcaption>
+    </figure>
+    <p class="note">Off the clock: a camera, a calligraphy pen, and F1 on Sundays.</p>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="pre">The whole point of this page</div>
+    <a class="email" href="mailto:deeprajpandey@pm.me">deeprajpandey@pm.me</a>
+    <p class="sub">Mostly I just want to meet range-y people over coffee.</p>
+  </section>
+
+  <!-- COLOPHON / SPECIMEN -->
+  <footer class="colophon">
+    <div>Display + body — Reforma (1918 / 1969), Pampatype · self-hosted</div>
+    <div>Metadata — Spline Sans Mono <em>(stand-in for Berkeley Mono)</em></div>
+    <div class="swatch"><span class="chip" style="background:#F7EFDD"></span> Paper #F7EFDD</div>
+    <div class="swatch"><span class="chip" style="background:#1B2A36"></span> Ink #1B2A36</div>
+    <div class="swatch"><span class="chip" style="background:#C8341B"></span> Cinnabar #C8341B</div>
+  </footer>
+
+</div>
+</body>
+</html>
