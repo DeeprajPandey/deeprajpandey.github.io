@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deepraj Pandey</title>
+<meta name="description" content="I build across software and hardware, from microVMs to instruments in the field. Lately that's Burst, background compute that runs a long job from one command.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://deeprajpandey.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://deeprajpandey.com/">
+<meta property="og:title" content="Deepraj Pandey">
+<meta property="og:description" content="I build across software and hardware, from microVMs to instruments in the field. Lately that's Burst, background compute that runs a long job from one command.">
+<meta property="og:image" content="https://deeprajpandey.com/banner.png">
+<meta property="og:locale" content="en_GB">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@deeprajpandey">
+<meta name="twitter:creator" content="@deeprajpandey">
+<meta name="twitter:title" content="Deepraj Pandey">
+<meta name="twitter:description" content="I build across software and hardware, from microVMs to instruments in the field. Lately that's Burst, background compute that runs a long job from one command.">
+<meta name="twitter:image" content="https://deeprajpandey.com/banner.png">
+
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#F7EFDD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B2A36" media="(prefers-color-scheme: dark)">
+
+<!-- Reforma is self-hosted; Spline Sans Mono via Google Fonts (consider self-hosting to drop the third-party request). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reforma superfamily (self-hosted in /assets/fonts) ──────────────── */
+@font-face{font-family:"Reforma1918";src:url('/assets/fonts/Reforma1918/Reforma1918-Gris.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma1918";src:url('/assets/fonts/Reforma1918/Reforma1918-GrisItalica.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Reforma1918";src:url('/assets/fonts/Reforma1918/Reforma1918-Negra.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma1918";src:url('/assets/fonts/Reforma1918/Reforma1918-NegraItalica.woff2') format('woff2');font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:"Reforma1969";src:url('/assets/fonts/Reforma1969/Reforma1969-Gris.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Reforma1969";src:url('/assets/fonts/Reforma1969/Reforma1969-GrisItalica.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+
+:root{
+  --paper:#F7EFDD;
+  --paper-deep:#F1E7CE;
+  --ink:#1B2A36;            /* near-black, warmed toward Prussian */
+  --ink-soft:#5A6068;
+  --ink-faint:#8A8478;
+  --rule:#DBD0B4;
+  --cinnabar:#C8341B;       /* THE accent: fox-rust / seal & correction ink. Used sparingly. */
+  --cinnabar-ink:#A82C15;   /* darker cinnabar for small text links (contrast) */
+  --display:"Reforma1918",Georgia,serif;
+  --body:"Reforma1969",Georgia,serif;
+  --mono:"Spline Sans Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{
+  background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.5;
+  background-image:radial-gradient(rgba(120,100,60,.03) 1px,transparent 1.4px);background-size:4px 4px;
+}
+::selection{background:var(--cinnabar);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+.skip-link{position:absolute;left:.75rem;top:-3rem;z-index:20;background:var(--ink);color:var(--paper);
+  padding:.5rem .9rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  transition:top .18s ease-out}
+.skip-link:focus{top:.75rem;outline:none}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.25rem,4vw,4.5rem)}
+.mono{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase}
+
+/* ── Masthead ──────────────────────────────────────────────────────── */
+.masthead{display:flex;justify-content:space-between;align-items:baseline;
+  padding:1.6rem 0 1.3rem;border-bottom:1px solid var(--ink)}
+.masthead .name{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;font-weight:500}
+.masthead .meta{color:var(--ink-soft)}
+
+/* ── Opening statement + the one living system ─────────────────────── */
+.hero{position:relative;padding:clamp(3.5rem,8vw,6rem) 0 clamp(2.5rem,6vw,4rem)}
+.hero__fig{position:absolute;top:-1rem;right:-2%;width:min(42%,480px);height:112%;
+  min-height:340px;z-index:0;margin:0;pointer-events:none}
+#attractor{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:multiply;opacity:.85}
+.hero__cap{position:absolute;right:0;bottom:0;max-width:34ch;text-align:right;pointer-events:auto;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;line-height:1.55;color:var(--ink-soft)}
+.hero__cap .ttl{display:block;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--cinnabar);margin-bottom:.35rem}
+.hero__inner{position:relative;z-index:1;max-width:60%}
+.statement{font-family:var(--display);font-weight:400;
+  font-size:clamp(1.45rem,2.5vw,2.1rem);line-height:1.4;letter-spacing:-.004em;
+  max-width:42ch;text-wrap:pretty}
+@media(max-width:760px){
+  .hero__inner{max-width:100%;position:relative;z-index:1}        /* words on top */
+  .hero__fig{position:fixed;inset:0;width:auto;height:auto;min-height:0;
+    margin:0;z-index:-1;opacity:.3}                               /* page-wide backdrop, behind every section */
+  #attractor{position:absolute;inset:0;width:100%;height:100%}
+  .hero__cap{display:none}
+}
+
+/* ── Section marker ────────────────────────────────────────────────── */
+.marker{display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--ink);padding-top:.7rem;margin-top:clamp(3rem,7vw,5rem)}
+.marker h2{font-family:var(--mono);font-weight:500;font-size:.74rem;letter-spacing:.2em;
+  text-transform:uppercase}
+.marker h2::before{content:"●";color:var(--cinnabar);font-size:.6em;vertical-align:.18em;margin-right:.7em}
+.marker .count{color:var(--ink-soft)}
+
+/* ── Selected work: staggered columns, threaded by a curve ─────────── */
+.works{position:relative;margin-top:2rem}
+.works__thread{position:absolute;inset:0;z-index:0;pointer-events:none}
+.works__thread svg{width:100%;height:100%;display:block}
+.works__thread path{fill:none;stroke:var(--ink);stroke-opacity:.16;stroke-width:1;
+  vector-effect:non-scaling-stroke}
+
+.work{position:relative;z-index:1;width:47%;padding:1.5rem 0 1.7rem;
+  border-top:1px solid var(--rule);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.work:nth-of-type(odd){margin-right:auto}    /* left column */
+.work:nth-of-type(even){margin-left:auto}     /* right column */
+.work:hover{transform:translateY(-2px)}
+
+.work .num{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+  color:var(--cinnabar);display:block;margin-bottom:.55rem}
+.work:nth-of-type(odd) .num{text-align:right}
+.work .title{font-family:var(--display);font-size:clamp(1.3rem,2.1vw,1.7rem);
+  font-weight:400;line-height:1.1;letter-spacing:-.01em;text-wrap:balance}
+.work .desc{font-size:1.02rem;line-height:1.5;margin-top:.5rem;color:var(--ink)}
+.work .desc a{position:relative;white-space:nowrap}
+.work .desc a::after{content:"";position:absolute;left:0;bottom:-.05em;height:1px;width:100%;background:var(--rule)}
+.work .desc a:hover::after{background:var(--cinnabar)}
+.desc__more[hidden]{display:none}
+.desc__toggle{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cinnabar-ink);background:none;border:0;padding:0;margin-left:.45rem;cursor:pointer}
+.desc__toggle:hover{text-decoration:underline}
+.desc__toggle:focus-visible{outline:1px solid var(--cinnabar);outline-offset:3px;border-radius:2px}
+.work .note{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;line-height:1.55;
+  color:var(--ink-soft);text-transform:uppercase;margin-top:.9rem}
+.work .note a{color:var(--cinnabar-ink);text-decoration:none;position:relative}
+.work .note a::after{content:"";position:absolute;left:0;right:0;bottom:-.15em;height:1px;
+  background:var(--cinnabar);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.work .note a:hover::after,.work .note a:focus-visible::after{transform:scaleX(1)}
+.work .note a:focus-visible{outline:none}
+@media(max-width:760px){
+  .works__thread{display:none}
+  .work{width:100%;margin:0;padding:1.4rem 0}
+}
+
+/* ── Earlier / aside ───────────────────────────────────────────────── */
+.aside{margin-top:clamp(3rem,7vw,4.5rem);border-top:1px solid var(--ink);padding-top:1.3rem;
+  display:grid;grid-template-columns:16rem 1fr;gap:clamp(1rem,4vw,3rem)}
+.aside .lead{color:var(--ink-soft);font-weight:400}
+.aside p{font-size:1.08rem;line-height:1.5;max-width:56ch}
+@media(max-width:680px){.aside{grid-template-columns:1fr;gap:.6rem}}
+
+/* ── Grace note ────────────────────────────────────────────────────── */
+.grace{margin-top:clamp(3.5rem,8vw,5.5rem);display:grid;
+  grid-template-columns:1fr minmax(0,40ch);gap:clamp(1.5rem,5vw,4rem);align-items:end}
+.grace figure{position:relative}
+.grace img{width:100%;display:block;filter:saturate(.92) contrast(1.02);border:1px solid var(--ink)}
+.grace figcaption{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);margin-top:.6rem}
+.grace .note{font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:clamp(1.25rem,2.1vw,1.65rem);line-height:1.32}
+@media(max-width:680px){.grace{grid-template-columns:1fr}}
+
+/* ── Contact ───────────────────────────────────────────────────────── */
+.contact{margin-top:clamp(4rem,9vw,7rem);border-top:1px solid var(--ink);
+  padding:clamp(2.5rem,6vw,4rem) 0 clamp(3rem,7vw,5rem);text-align:center}
+.contact .pre{color:var(--ink-soft);margin-bottom:1.1rem;font-weight:400}
+.contact a.email{font-family:var(--display);font-style:italic;font-weight:700;
+  font-size:clamp(1.9rem,6vw,4rem);line-height:1;letter-spacing:-.02em;
+  position:relative;display:inline-block}
+.contact a.email::after{content:"";position:absolute;left:0;bottom:.04em;height:2px;width:100%;
+  background:var(--cinnabar);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.contact a.email:hover::after,.contact a.email:focus-visible::after{transform:scaleX(1)}
+.contact a.email:focus-visible{outline:none}
+.contact .sub{font-size:1.05rem;line-height:1.5;color:var(--ink-soft);margin:1.4rem auto 0;max-width:46ch}
+
+/* ── Colophon / specimen ───────────────────────────────────────────── */
+.colophon{border-top:1px solid var(--rule);padding:2rem 0 3rem;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.05em;color:var(--ink-soft);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.1rem}
+.colophon .swatch{display:flex;align-items:center;gap:.5rem}
+.colophon .chip{width:1rem;height:1rem;border:1px solid var(--ink)}
+
+@media(prefers-reduced-motion:reduce){#attractor{opacity:.7}}
+</style>
+</head>
+
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="wrap">
+
+  <header class="masthead">
+    <h1 class="name">Deepraj Pandey</h1>
+    <div class="meta mono">Bhubaneswar, India</div>
+  </header>
+
+  <!-- OPENING STATEMENT + LIVING ATTRACTOR (the one saturated moment) -->
+  <section class="hero" id="main">
+    <figure class="hero__fig">
+      <canvas id="attractor" aria-hidden="true"></canvas>
+      <figcaption class="hero__cap">
+        <span class="ttl">Clifford attractor</span>
+        From a national hackathon I ran. Each entrant's two months of activity on our submission portal, drawn as an attractor of their own.
+      </figcaption>
+    </figure>
+    <div class="hero__inner">
+      <p class="statement">I've put a key-value store inside an Intel SGX enclave and written the software inside sensors that wintered in the Himalayas. Most of what I build starts in a research lab or a dorm room.</p>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <div class="marker">
+    <h2>Selected work</h2>
+    <span class="count mono">2020–2026</span>
+  </div>
+
+  <div class="works">
+
+    <div class="works__thread" aria-hidden="true">
+      <svg viewBox="0 0 100 1000" preserveAspectRatio="none">
+        <path d="M50,0 C62,110 62,220 50,330 C38,440 38,550 50,660 C62,770 62,880 50,1000"/>
+      </svg>
+    </div>
+
+    <article class="work">
+      <span class="num">01</span>
+      <div class="body">
+        <h3 class="title">Burst</h3>
+        <p class="desc">Burst came out of a frustration I kept hitting: getting from an idea to a running experiment shouldn't start with a day of infrastructure setup. So now you send a long-running job from your laptop, it starts on an isolated microVM in about 90 to 120 milliseconds, runs to completion, and the results come back, with nothing to set up or manage. The first customer runs a drug-discovery pipeline.</p>
+      </div>
+      <div class="note">Systems · 2026 · <a href="https://burst.cx" target="_blank" rel="noopener noreferrer">Site</a></div>
+    </article>
+
+    <article class="work">
+      <span class="num">02</span>
+      <div class="body">
+        <h3 class="title">Makerspace</h3>
+        <p class="desc">I co-founded a makerspace as a student, and after Microsoft Research I came back to co-lead it for four years. It began in a couple of retrofitted classrooms and grew into a 4,500 square foot shop, with more than 2,400 members over the years and around forty student managers keeping it running. A lot of them were studying philosophy or history long before they touched a 3D printer, and a first-year teaching a PhD student how to drive the CNC was an ordinary afternoon. Work from the space has since reached HCI International 2025 and ACM Compute 2025.</p>
+      </div>
+      <div class="note">Research &amp; fabrication · 2021–2026</div>
+    </article>
+
+    <article class="work">
+      <span class="num">03</span>
+      <div class="body">
+        <h3 class="title">CovidBloc</h3>
+        <p class="desc">As part of a blockchain research fellowship with Dr. Mahavir Jhawar, a friend and I built CovidBloc during the lockdowns, a contact-tracing system that keeps its exposure database on a private Hyperledger Fabric network, following the Apple and Google exposure-notification design. They wrote the Flutter app; I built the backend and ran the chain itself, a permissioned Hyperledger Fabric network I set up across several GCP Compute Engine instances, from the certificate authority and MSP through the peer and the full chaincode lifecycle. We put it in front of about fifteen people on a mostly empty campus. It was the first distributed system of this kind I had stood up and run end to end, and it taught me more about infrastructure than any class had. The writeup and a demo live on <a href="https://sites.google.com/view/brgashoka/projects" target="_blank" rel="noopener noreferrer">Dr. Jhawar's research group page</a>.</p>
+      </div>
+      <div class="note">Distributed systems · 2020 · <a href="https://eprint.iacr.org/2020/1543" target="_blank" rel="noopener noreferrer">Paper</a></div>
+    </article>
+
+    <article class="work">
+      <span class="num">04</span>
+      <div class="body">
+        <h3 class="title">Balancing act: the red fox of the Trans-Himalaya</h3>
+        <p class="desc">I wrote the software for eight motion-triggered acoustic units, each a Raspberry Pi with a custom HAT inside a weatherproof enclosure my colleagues built, for a team at the National Centre for Biological Sciences. They went out to Spiti Valley and sat at 5,000 metres through a winter that dropped to thirty below, often under six feet of snow. No one could reach them for days at a time, so the software had to keep recording cleanly on its own between battery swaps and not lock up. Those recordings became a paper in Proceedings of the Royal Society B about how red foxes manage to live alongside the dogs that hunt them, and I am one of the authors.</p>
+      </div>
+      <div class="note">Field software · 2025 · <a href="https://royalsocietypublishing.org/doi/10.1098/rspb.2025.0333" target="_blank" rel="noopener noreferrer">Paper</a></div>
+    </article>
+
+    <article class="work">
+      <span class="num">05</span>
+      <div class="body">
+        <h3 class="title">AGON</h3>
+        <p class="desc">AGON started as a question for a theory of computation course: how much smaller could the same data get if you stopped making it human-readable? Adhiraj Singh and I answered it with a compact binary format built on a small formal grammar, where every value carries a one-byte type marker, so a parser reads it in a single pass with no lookahead. Across 225 generated objects, about half of them deeply nested, it encoded around 70% faster than JSON and produced files around 70% smaller. Decoding came out slower than JSON, which is the obvious thing to fix next.</p>
+      </div>
+      <div class="note">Binary formats · 2021 · <a href="/projects/agon.html">Writeup</a></div>
+    </article>
+
+    <article class="work">
+      <span class="num">06</span>
+      <div class="body">
+        <h3 class="title">The Indian Car Attack</h3>
+        <p class="desc">This one started in my dorm room, with no hardware lab. I sourced a key fob and central-locking unit from a dealer and went after the radio with an RTL-SDR and a YARD Stick One. A plain replay failed, because the fob uses rolling codes, so I worked through a roll-jam and a one-shot replay-at-a-distance instead, and traced the fob to a Microchip HCS200 running Classic KeeLoq, a cipher broken publicly since 2008. With physical access to the locking unit, the attack unlocked it. The project later grew into a small car-hacking group inside the makerspace.</p>
+      </div>
+      <div class="note">Security · 2021 · <a href="/projects/tica.html">Writeup</a></div>
+    </article>
+
+    <article class="work">
+      <span class="num">07</span>
+      <div class="body">
+        <h3 class="title">Palynology microscope automation</h3>
+        <p class="desc">With Dr. Meghna Agarwala and Ananya Dinkar, I have been building low-cost microscopy automation for palynology, the study of pollen. Identifying a fossil grain means tumbling it to see it from several angles, something palynologists still do by hand, one tap at a time. We automate that with a roughly $300 servo rig driven by an ESP32, paired with open-source focus-stacking and slide-scanning software that captures a few hundred frames per sample. Early testing points to taking an analysis that runs to about a year down toward roughly three months. We are building it out with groups at the Smithsonian and Oxford, and it is headed to a technical workshop at INQUA 2027.</p>
+      </div>
+      <div class="note">Scientific instruments · ongoing</div>
+    </article>
+
+  </div>
+
+  <!-- EARLIER -->
+  <div class="aside">
+    <h2 class="lead mono">Earlier</h2>
+    <p>Before the makerspace, I spent time at Microsoft Research India, working on scheduling algorithms that maximise how much a datacenter can rely on renewable energy.</p>
+  </div>
+
+  <!-- GRACE NOTE -->
+  <div class="grace">
+    <h2 class="vh">Off the clock</h2>
+    <figure>
+      <img src="/assets/img/photos/bombay-airport-2024.jpeg" alt="Lone figure against a vast patterned wall, Bombay airport">
+      <figcaption>Bombay, 2024</figcaption>
+    </figure>
+    <p class="note">Away from screens I shoot street photography on an old Nikon D5300, mostly in black and white, and I am slowly learning copperplate calligraphy. Some of it will go up here before long.</p>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h2 class="pre mono">Get in touch</h2>
+    <a class="email" href="mailto:deeprajpandey@pm.me">deeprajpandey@pm.me</a>
+    <p class="sub">If you are building something that sits across a few odd fields, or you just want to compare notes, I would like to hear from you.</p>
+  </section>
+
+  <!-- COLOPHON / SPECIMEN -->
+  <footer class="colophon">
+    <div>Display + body — Reforma 1918 / 1969 (Pampatype) · self-hosted</div>
+    <div>Metadata — Spline Sans Mono</div>
+    <div class="swatch"><span class="chip" style="background:#F7EFDD"></span> Paper #F7EFDD</div>
+    <div class="swatch"><span class="chip" style="background:#1B2A36"></span> Ink #1B2A36</div>
+    <div class="swatch"><span class="chip" style="background:#C8341B"></span> Cinnabar #C8341B</div>
+  </footer>
+
+</div>
+
+<script>
+/* Clifford attractor — the single saturated moment, drawn IN the accent (cinnabar),
+   low-contrast, beside the opening statement. The only place color concentrates.
+   Honors prefers-reduced-motion: one still frame. */
+(function(){
+  const cv = document.getElementById('attractor');
+  if(!cv) return;
+  const ctx = cv.getContext('2d', {alpha:true});
+  const a=-1.7, b=1.8, c=-0.9, d=-0.4;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W,H,DPR,x=0.1,y=0.1,raf=null,s=1,ox=0,oy=0;
+
+  function size(){
+    DPR = Math.min(devicePixelRatio||1, 2);
+    const r = cv.getBoundingClientRect();
+    W = cv.width  = Math.max(1, r.width  * DPR);
+    H = cv.height = Math.max(1, r.height * DPR);
+    if(matchMedia('(max-width:760px)').matches){
+      s = Math.min(W,H)/3.0; ox = W*0.72; oy = H*0.52;   // mobile: big, weighted to the right, bleeds off-edge
+    } else {
+      s = Math.min(W,H)/4.5; ox = W/2; oy = H/2;          // desktop: centered in the box beside the text
+    }
+  }
+  function plot(n){
+    ctx.fillStyle = 'rgba(200,52,27,0.42)';   // cinnabar, multiplied onto paper
+    for(let i=0;i<n;i++){
+      const nx = Math.sin(a*y) + c*Math.cos(a*x);
+      const ny = Math.sin(b*x) + d*Math.cos(b*y);
+      x=nx; y=ny;
+      ctx.fillRect(ox + x*s, oy + y*s, DPR*0.7, DPR*0.7);
+    }
+  }
+  function start(){
+    size(); ctx.clearRect(0,0,W,H); x=0.1; y=0.1;
+    if(reduce){ plot(120000); return; }
+    let drawn=0, budget=230000;
+    (function loop(){ if(drawn<budget){ plot(850); drawn+=850; raf=requestAnimationFrame(loop); } })();
+  }
+  let t; addEventListener('resize',()=>{cancelAnimationFrame(raf);clearTimeout(t);t=setTimeout(start,150)});
+  start();
+})();
+
+/* Collapse each entry to its first sentence, with an accessible more/less toggle.
+   No JS leaves the full text in place. Opening an entry changes the list height,
+   which the work-list ResizeObserver picks up to re-thread the curve. */
+(function(){
+  const BOUND = /([.!?])\s+(?=[A-Z0-9"'])/g;
+  const ABBR = new Set(['dr','mr','mrs','ms','prof','st','vs','jr','sr','inc','dept','fig','no','etc']);
+  function split(text){
+    BOUND.lastIndex = 0;
+    let m;
+    while((m = BOUND.exec(text))){
+      const before = text.slice(0, m.index);
+      const w = (before.match(/(\S+)$/) || ['',''])[1].toLowerCase().replace(/[^a-z]/g,'');
+      if(ABBR.has(w)) continue;                                  // skip "Dr.", "vs." etc.
+      return { first: text.slice(0, m.index+1), rest: text.slice(m.index+1).replace(/^\s+/,'') };
+    }
+    return { first: text, rest: '' };
+  }
+  document.querySelectorAll('.work .desc').forEach((desc,i)=>{
+    const html = desc.innerHTML, text = desc.textContent;
+    const {first, rest} = split(text);
+    if(!rest) return;                                            // single sentence, leave it
+    const cut = first.length;                                    // first sentences are tag-free here
+    const lead = document.createElement('span');
+    lead.innerHTML = html.slice(0, cut);
+    const more = document.createElement('span');
+    more.className = 'desc__more';
+    more.id = 'desc-more-' + i;
+    more.hidden = true;
+    more.innerHTML = html.slice(cut);                            // keeps the leading space
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'desc__toggle';
+    btn.textContent = 'more';
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-controls', more.id);
+    btn.addEventListener('click',()=>{
+      const open = more.hidden;
+      more.hidden = !open;
+      btn.textContent = open ? 'less' : 'more';
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    desc.replaceChildren(lead, more, btn);
+  });
+})();
+
+/* Thread the work list onto a curve that passes through each numbered node.
+   Recomputed on resize, font load, and any height change (covers expand/collapse). */
+(function(){
+  const works = document.querySelector('.works');
+  if(!works) return;
+  const wrap = works.querySelector('.works__thread');
+  const svg  = wrap && wrap.querySelector('svg');
+  const path = svg && svg.querySelector('path');
+  if(!path) return;
+  let raf=null, rt=null;
+
+  function curve(p){
+    let d = `M ${p[0].x.toFixed(1)} ${p[0].y.toFixed(1)}`;
+    for(let i=0;i<p.length-1;i++){
+      const p0=p[i-1]||p[i], p1=p[i], p2=p[i+1], p3=p[i+2]||p2;
+      const c1x=p1.x+(p2.x-p0.x)/6, c1y=p1.y+(p2.y-p0.y)/6;
+      const c2x=p2.x-(p3.x-p1.x)/6, c2y=p2.y-(p3.y-p1.y)/6;
+      d+=` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+    }
+    return d;
+  }
+  function draw(){
+    if(getComputedStyle(wrap).display==='none') return;     // mobile: thread hidden
+    const items=[...works.querySelectorAll('.work')];
+    if(!items.length) return;
+    const W=works.clientWidth, H=works.clientHeight;
+    const pts=items.map((el,i)=>{
+      const odd=i%2===0;                                    // matches :nth-of-type(odd)
+      const num=el.querySelector('.num');
+      const x=odd ? el.offsetLeft+el.offsetWidth : el.offsetLeft;
+      const y=el.offsetTop + (num ? num.offsetTop+num.offsetHeight/2 : 16);
+      return {x,y};
+    });
+    pts.unshift({x:pts[0].x, y:0});                         // enter from the top
+    pts.push({x:pts[pts.length-1].x, y:H});                 // exit at the bottom
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svg.setAttribute('preserveAspectRatio','none');
+    path.setAttribute('d', curve(pts));
+  }
+  function schedule(){ if(raf) cancelAnimationFrame(raf); raf=requestAnimationFrame(draw); }
+
+  addEventListener('resize',()=>{ if(rt) clearTimeout(rt); rt=setTimeout(schedule,120); });
+  if(window.ResizeObserver) new ResizeObserver(schedule).observe(works);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  addEventListener('load', schedule);
+  schedule();
+})();
+</script>
+</body>
+</html>
